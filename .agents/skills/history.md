@@ -64,7 +64,7 @@
 ### 4. LevelData 컴파일러 미인식 오류 (Autoload 싱글톤 해결)
 - **현상**: 게임 실행 후 스테이지 선택 버튼 클릭 시 `SCRIPT ERROR: Parse Error: Identifier "LevelData" not declared in the current scope.` 에러 발생 및 스크롤 프리즈.
 - **원인**: `level_data.gd`에 `class_name LevelData`를 추가하여 전역 접근을 시도했으나, Godot 엔진은 에디터 외부에서 클래스명이 바뀌면 `.godot` 스크립트 캐시가 실시간 갱신되지 않는 한계가 있어 단독 런타임에서 `LevelData`를 해석하지 못함. 이로 인해 인게임 매니저(`game.gd`)가 로드조차 되지 않고 씬이 얼어버렸음.
-- **조치**: 에디터 cache와 무관하게 부팅 시 무조건 메모리에 주입되는 **`project.godot`의 `[autoload]` 영역에 `LevelData` 싱글톤으로 정식 등록**하고, 클래스 중복 오류를 방지하기 위해 `level_data.gd`에서 `class_name` 코드를 정비했습니다.
+- **조치**: 에디터 캐시와 무관하게 부팅 시 무조건 메모리에 주입되는 **`project.godot`의 `[autoload]` 영역에 `LevelData` 싱글톤으로 정식 등록**하고, 클래스 중복 오류를 방지하기 위해 `level_data.gd`에서 `class_name` 코드를 정비했습니다.
 
 ### 5. 쉴드바 스타일박스 Read-Only 자원 크래시 차단
 - **현상**: 쉴드 에너지 양이 변할 때 `_on_player_shield_changed` 콜백에서 스타일박스 값 수정 시 크래시 위험.

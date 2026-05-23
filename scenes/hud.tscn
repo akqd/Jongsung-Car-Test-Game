@@ -205,18 +205,18 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GameOverPanel/VBoxContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GameOverPanel/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="RetryButton" type="Button" parent="GameOverPanel/VBoxContainer/HBoxContainer"]
+[node name="RetryButton" type="Button" parent="GameOverPanel/VBoxContainer/HBoxContainer/RetryButton"]
 custom_minimum_size = Vector2(120, 40)
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 text = "RETRY"
 
-[node name="MenuButton" type="Button" parent="GameOverPanel/VBoxContainer/HBoxContainer"]
+[node name="MenuButton" type="Button" parent="GameOverPanel/VBoxContainer/HBoxContainer/MenuButton"]
 custom_minimum_size = Vector2(120, 40)
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
@@ -271,24 +271,24 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="StageClearPanel/VBoxContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="StageClearPanel/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="NextButton" type="Button" parent="StageClearPanel/VBoxContainer/HBoxContainer"]
+[node name="NextButton" type="Button" parent="StageClearPanel/VBoxContainer/HBoxContainer/NextButton"]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_font_sizes/font_size = 14
 text = "NEXT STAGE"
 
-[node name="RetryButton" type="Button" parent="StageClearPanel/VBoxContainer/HBoxContainer"]
+[node name="RetryButton" type="Button" parent="StageClearPanel/VBoxContainer/HBoxContainer/RetryButton"]
 custom_minimum_size = Vector2(90, 40)
 layout_mode = 2
 theme_override_font_sizes/font_size = 14
 text = "REPLAY"
 
-[node name="MenuButton" type="Button" parent="StageClearPanel/VBoxContainer/HBoxContainer"]
+[node name="MenuButton" type="Button" parent="StageClearPanel/VBoxContainer/HBoxContainer/MenuButton"]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 theme_override_font_sizes/font_size = 14
