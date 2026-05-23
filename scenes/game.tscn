@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmj2m2g3b2d1c"]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_1"]
+[ext_resource type="Script" path="res://scripts/road.gd" id="2_2"]
+[ext_resource type="PackedScene" uid="uid://dpwtrc0r5q3b2" path="res://scenes/player.tscn" id="3_3"]
+[ext_resource type="PackedScene" uid="uid://b1hudc2d1s3c2" path="res://scenes/hud.tscn" id="4_4"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_1")
+
+[node name="Road" type="Node2D" parent="."]
+script = ExtResource("2_2")
+
+[node name="Player" parent="." instance=ExtResource("3_3")]
+position = Vector2(270, 800)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(270, 480)
+
+[node name="HUD" parent="." instance=ExtResource("4_4")]

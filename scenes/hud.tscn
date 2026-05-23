@@ -1,0 +1,301 @@
+[gd_scene load_steps=7 format=3 uid="uid://b1hudc2d1s3c2"]
+
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_topbar"]
+bg_color = Color(0.180392, 0.203922, 0.25098, 0.75)
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 8.0
+expand_margin_top = 4.0
+expand_margin_right = 8.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
+bg_color = Color(0.117647, 0.133333, 0.160784, 0.588235)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_shield_fill"]
+bg_color = Color(0.533333, 0.752941, 0.815686, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0.345098, 0.545098, 0.678431, 0.5)
+shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_progress_fill"]
+bg_color = Color(0.92549, 0.796078, 0.545098, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.117647, 0.132353, 0.161765, 0.88)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.345098, 0.545098, 0.678431, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.6)
+shadow_size = 12
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_1")
+
+[node name="HUDContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TopBar" type="HBoxContainer" parent="HUDContainer"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 50.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="ScoreContainer" type="PanelContainer" parent="HUDContainer/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_topbar")
+
+[node name="ScoreLabel" type="Label" parent="HUDContainer/TopBar/ScoreContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.858824, 0.870588, 0.886275, 1)
+theme_override_font_sizes/font_size = 18
+text = "SCORE: 000000"
+vertical_alignment = 1
+
+[node name="SpeedContainer" type="PanelContainer" parent="HUDContainer/TopBar"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_topbar")
+
+[node name="SpeedLabel" type="Label" parent="HUDContainer/TopBar/SpeedContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92549, 0.796078, 0.545098, 1)
+theme_override_font_sizes/font_size = 18
+text = "0 KM/H"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="BottomBar" type="VBoxContainer" parent="HUDContainer"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -100.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 12
+
+[node name="ShieldContainer" type="HBoxContainer" parent="HUDContainer/BottomBar"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ShieldLabel" type="Label" parent="HUDContainer/BottomBar/ShieldContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.533333, 0.752941, 0.815686, 1)
+theme_override_colors/font_outline_color = Color(0.180392, 0.203922, 0.25098, 1)
+theme_override_constant_override/outline_size = 4
+theme_override_font_sizes/font_size = 16
+text = "SHIELD"
+vertical_alignment = 1
+
+[node name="ShieldBar" type="ProgressBar" parent="HUDContainer/BottomBar/ShieldContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_shield_fill")
+value = 100.0
+show_percentage = false
+
+[node name="ProgressContainer" type="HBoxContainer" parent="HUDContainer/BottomBar"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ProgressLabel" type="Label" parent="HUDContainer/BottomBar/ProgressContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92549, 0.796078, 0.545098, 1)
+theme_override_colors/font_outline_color = Color(0.180392, 0.203922, 0.25098, 1)
+theme_override_constant_override/outline_size = 4
+theme_override_font_sizes/font_size = 14
+text = "DISTANCE"
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="HUDContainer/BottomBar/ProgressContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_progress_fill")
+show_percentage = false
+
+[node name="GameOverPanel" type="Panel" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -150.0
+offset_right = 180.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 30.0
+offset_right = -20.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="GameOverPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.74902, 0.380392, 0.415686, 1)
+theme_override_colors/font_outline_color = Color(0.180392, 0.203922, 0.25098, 1)
+theme_override_constant_override/outline_size = 6
+theme_override_font_sizes/font_size = 32
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="GameOverPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.858824, 0.870588, 0.886275, 1)
+theme_override_font_sizes/font_size = 18
+text = "FINAL SCORE: 000000"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="GameOverPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameOverPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="RetryButton" type="Button" parent="GameOverPanel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "RETRY"
+
+[node name="MenuButton" type="Button" parent="GameOverPanel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "MAIN MENU"
+
+[node name="StageClearPanel" type="Panel" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -150.0
+offset_right = 180.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StageClearPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="StageClearPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92549, 0.796078, 0.545098, 1)
+theme_override_colors/font_outline_color = Color(0.180392, 0.203922, 0.25098, 1)
+theme_override_constant_override/outline_size = 6
+theme_override_font_sizes/font_size = 32
+text = "STAGE CLEAR!"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="StageClearPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.858824, 0.870588, 0.886275, 1)
+theme_override_font_sizes/font_size = 18
+text = "FINAL SCORE: 000000"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="StageClearPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StageClearPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="NextButton" type="Button" parent="StageClearPanel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "NEXT STAGE"
+
+[node name="RetryButton" type="Button" parent="StageClearPanel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(90, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "REPLAY"
+
+[node name="MenuButton" type="Button" parent="StageClearPanel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "MAIN MENU"
+
+[connection signal="pressed" from="GameOverPanel/VBoxContainer/HBoxContainer/RetryButton" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="GameOverPanel/VBoxContainer/HBoxContainer/MenuButton" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="StageClearPanel/VBoxContainer/HBoxContainer/NextButton" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="StageClearPanel/VBoxContainer/HBoxContainer/RetryButton" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="StageClearPanel/VBoxContainer/HBoxContainer/MenuButton" to="." method="_on_menu_pressed"]
